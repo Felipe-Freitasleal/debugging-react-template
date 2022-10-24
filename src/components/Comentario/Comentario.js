@@ -1,12 +1,27 @@
 import React from 'react'
-import { Comentario } from './styles'
+import { ComentarioStyled } from '../Comentario/styled'
+import { useState } from 'react'
 
-export default function Comentario(props) {
+export default function Comentarios(props) {
+
+    const [novoComentario, setNovoComentario] = useState("")
+    const [comentario, setComentario] = useState("")
+
+    function adicionaComentario() {
+        setComentario(novoComentario)
+        console.log(novoComentario)
+       }
+    
+    function onChangeComentario (event) {
+         setNovoComentario(event.target.value)
+      
+    }
+
     return (
-        <Comentario>
-            <input placeholder="Adicionar comentario" />
-            <button onclick={props.adicionaComentario}>Comentar Post</button>
-            <p>{props.post.comentario}</p>
-        </Comentario>
+        <ComentarioStyled>
+            <input placeholder="Adicionar comentario" onChange={onChangeComentario} value={novoComentario}/>
+            <button onClick={adicionaComentario}>Comentar Post</button>
+            <p>{comentario}</p>
+        </ComentarioStyled>
     )
 }
